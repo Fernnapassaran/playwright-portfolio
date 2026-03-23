@@ -35,7 +35,7 @@ export default defineConfig({
       /* setting full screen */ args: ["--start-maximized"],
     },
 
-    viewport: null, //set null because it doesn't fix size screen
+    viewport: { width: 1280, height: 720 }, //set null because it doesn't fix size screen
 
     trace: "on-first-retry", //
     screenshot: "on", //take a screenshort every time a test finishes

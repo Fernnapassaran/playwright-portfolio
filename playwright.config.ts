@@ -44,37 +44,40 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'setup',
-      testMatch: /.*\.setup\.ts/
+      name: "setup",
+      testMatch: /.*\.setup\.ts/,
     },
     {
       name: "chromium",
-      use: { ...devices["Desktop Chrome"],
-       //Configure all tests in this project to use the stored login state
-        storageState: 'playwright/.auth/user.json',
-       },
-       // Ensure the 'setup' project completes before running this project
-       dependencies: ['setup'],
+      use: {
+        ...devices["Desktop Chrome"],
+        //Configure all tests in this project to use the stored login state
+        storageState: "playwright/.auth/user.json",
+      },
+      // Ensure the 'setup' project completes before running this project
+      dependencies: ["setup"],
     },
 
     {
       name: "firefox",
-      use: { ...devices["Desktop Firefox"] ,
-       //Configure all tests in this project to use the stored login state
-        storageState: 'playwright/.auth/user.json',
-       },
-       // Ensure the 'setup' project completes before running this project
-       dependencies: ['setup'],
+      use: {
+        ...devices["Desktop Firefox"],
+        //Configure all tests in this project to use the stored login state
+        storageState: "playwright/.auth/user.json",
+      },
+      // Ensure the 'setup' project completes before running this project
+      dependencies: ["setup"],
     },
 
     {
       name: "webkit",
-      use: { ...devices["Desktop Safari"],
-       //Configure all tests in this project to use the stored login state
-        storageState: 'playwright/.auth/user.json',
-       },
-       // Ensure the 'setup' project completes before running this project
-       dependencies: ['setup'],
+      use: {
+        ...devices["Desktop Safari"],
+        //Configure all tests in this project to use the stored login state
+        storageState: "playwright/.auth/user.json",
+      },
+      // Ensure the 'setup' project completes before running this project
+      dependencies: ["setup"],
     },
 
     /* Test against mobile viewports. */

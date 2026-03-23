@@ -35,7 +35,7 @@ export default defineConfig({
       /* setting full screen */ args: ["--start-maximized"],
     },
 
-    viewport: null, //set null because it doesn't fix size screen
+    viewport: { width: 1280, height: 720 }, //set null because it doesn't fix size screen
 
     trace: "on-first-retry", //
     screenshot: "on", //take a screenshort every time a test finishes
@@ -44,37 +44,40 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'setup',
-      testMatch: /.*\.setup\.ts/
+      name: "setup",
+      testMatch: /.*\.setup\.ts/,
     },
     {
       name: "chromium",
-      use: { ...devices["Desktop Chrome"],
-       //Configure all tests in this project to use the stored login state
-        storageState: 'playwright/.auth/user.json',
-       },
-       // Ensure the 'setup' project completes before running this project
-       dependencies: ['setup'],
+      use: {
+        ...devices["Desktop Chrome"],
+        //Configure all tests in this project to use the stored login state
+        storageState: "playwright/.auth/user.json",
+      },
+      // Ensure the 'setup' project completes before running this project
+      dependencies: ["setup"],
     },
 
     {
       name: "firefox",
-      use: { ...devices["Desktop Firefox"] ,
-       //Configure all tests in this project to use the stored login state
-        storageState: 'playwright/.auth/user.json',
-       },
-       // Ensure the 'setup' project completes before running this project
-       dependencies: ['setup'],
+      use: {
+        ...devices["Desktop Firefox"],
+        //Configure all tests in this project to use the stored login state
+        storageState: "playwright/.auth/user.json",
+      },
+      // Ensure the 'setup' project completes before running this project
+      dependencies: ["setup"],
     },
 
     {
       name: "webkit",
-      use: { ...devices["Desktop Safari"],
-       //Configure all tests in this project to use the stored login state
-        storageState: 'playwright/.auth/user.json',
-       },
-       // Ensure the 'setup' project completes before running this project
-       dependencies: ['setup'],
+      use: {
+        ...devices["Desktop Safari"],
+        //Configure all tests in this project to use the stored login state
+        storageState: "playwright/.auth/user.json",
+      },
+      // Ensure the 'setup' project completes before running this project
+      dependencies: ["setup"],
     },
 
     /* Test against mobile viewports. */

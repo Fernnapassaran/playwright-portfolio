@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 import { LoginPage } from "../pages/LoginPage";
 import { InventoryPage } from "../pages/InventoryPage";
 import { CheckoutPage } from "../pages/CheckoutPage";
+import testData from "../data/items.json";
 
 test("check out success", async ({ page }) => {
   //declare a variable
@@ -14,12 +15,13 @@ test("check out success", async ({ page }) => {
   await page.goto("https://www.saucedemo.com/inventory.html");
 
   //step 2 : Add to Cart
-  await inventoryPage.addItemTocart();
+  await inventoryPage.addOnceItems(testData.singleItem);
 
   //step 3 : fill name lastname zipcode
   await checkoutPage.checkOutItem("Anna", "Doner", "10900");
 
   //step 4 : verify check out success
-  await expect(checkoutPage.checkOutSuccess).toHaveText("Thank you for your order!");
-
+  await expect(checkoutPage.checkOutSuccess).toHaveText(
+    "Thank you for your order!",
+  );
 });

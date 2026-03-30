@@ -32,10 +32,11 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
 
     launchOptions: {
-      /* setting full screen */ args: ["--start-maximized"],
+      /* setting full screen */
+      //args: ["--start-maximized"],
     },
-
-    viewport: { width: 1280, height: 720 }, //set null because it doesn't fix size screen
+    //viewport: null,
+    //viewport: { width: 1280, height: 720 }, //set null because it doesn't fix size screen
 
     trace: "on-first-retry", //
     screenshot: "on", //take a screenshort every time a test finishes
@@ -53,6 +54,11 @@ export default defineConfig({
         ...devices["Desktop Chrome"],
         //Configure all tests in this project to use the stored login state
         storageState: "playwright/.auth/user.json",
+        //Configure chrom screen
+        launchOptions: {
+          args: ["--start-maximized"],
+        },
+        viewport: null,
       },
       // Ensure the 'setup' project completes before running this project
       dependencies: ["setup"],

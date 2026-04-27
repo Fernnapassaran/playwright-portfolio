@@ -2,14 +2,6 @@ import { defineConfig, devices } from "@playwright/test";
 import { on } from "node:cluster";
 
 /**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
-
-/**
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
@@ -24,22 +16,12 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: "html",
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  /* Shared settings for all the projects below. */
   use: {
-    /* Base URL to use in actions like `await page.goto('')`. */
-    // baseURL: 'http://localhost:3000',
-
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-
-    launchOptions: {
-      /* setting full screen */
-      //args: ["--start-maximized"],
-    },
-    //viewport: null,
-    //viewport: { width: 1280, height: 720 }, //set null because it doesn't fix size screen
-
-    trace: "on-first-retry", //
-    screenshot: "on", //take a screenshort every time a test finishes
+    /* Collect trace when retrying the failed test. */
+    trace: "on-first-retry",
+    /* Take a screenshot every time a test finishes */
+    screenshot: "on",
   },
 
   /* Configure projects for major browsers */
@@ -52,15 +34,18 @@ export default defineConfig({
       name: "chromium",
       use: {
         ...devices["Desktop Chrome"],
-        //Configure all tests in this project to use the stored login state
+        /* Configure all tests in this project to use the stored login state */
         storageState: "playwright/.auth/user.json",
-        //Configure chrom screen
+        /* Launch browser in maximized mode */
         launchOptions: {
           args: ["--start-maximized"],
         },
+        /* Set viewport to null to allow full screen resizing */
         viewport: null,
+        /* Reset deviceScaleFactor to prevent conflict with null viewport */
+        deviceScaleFactor: undefined,
       },
-      // Ensure the 'setup' project completes before running this project
+      /* Ensure the 'setup' project completes before running this project */
       dependencies: ["setup"],
     },
 
@@ -68,10 +53,8 @@ export default defineConfig({
       name: "firefox",
       use: {
         ...devices["Desktop Firefox"],
-        //Configure all tests in this project to use the stored login state
         storageState: "playwright/.auth/user.json",
       },
-      // Ensure the 'setup' project completes before running this project
       dependencies: ["setup"],
     },
 
@@ -79,38 +62,9 @@ export default defineConfig({
       name: "webkit",
       use: {
         ...devices["Desktop Safari"],
-        //Configure all tests in this project to use the stored login state
         storageState: "playwright/.auth/user.json",
       },
-      // Ensure the 'setup' project completes before running this project
       dependencies: ["setup"],
     },
-
-    /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: { ...devices['iPhone 12'] },
-    // },
-
-    /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    // },
   ],
-
-  /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://localhost:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
 });

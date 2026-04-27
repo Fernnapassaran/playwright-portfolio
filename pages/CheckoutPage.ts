@@ -50,9 +50,11 @@ export class CheckoutPage {
   //Action
   async checkOutItem(firstname: string, lastname: string, zipcode: string) {
     //Tap cart
+    await this.cartButton.isVisible();
     await this.cartButton.click();
 
     //Tap check out button
+    await this.checkOutButton.isVisible();
     await this.checkOutButton.click();
 
     //input firstname, lastname, zipcode
@@ -61,9 +63,22 @@ export class CheckoutPage {
     await this.zipCodeInput.fill(zipcode);
 
     //tap button
+    await this.continueButton.isVisible();
     await this.continueButton.click();
+
+    await this.finishButton.isVisible();
     await this.finishButton.click();
 
+  }
+
+  async completeOrder() {
+    
+    await this.finishButton.isVisible();
+    await this.finishButton.click();
+    // Check text success
+    await expect(this.checkOutSuccess).toBeVisible();
+    await expect(this.checkOutSuccess).toHaveText('Thank you for your order!');
+    
   }
 
 }

@@ -21,7 +21,6 @@ test("check out success", async ({ page }) => {
   await checkoutPage.checkOutItem("Anna", "Doner", "10900");
 
   //step 4 : verify check out success
-  await expect(checkoutPage.checkOutSuccess).toHaveText(
-    "Thank you for your order!",
-  );
+  await expect(checkoutPage.checkOutSuccess).toHaveText("Thank you for your order!");
+
 });

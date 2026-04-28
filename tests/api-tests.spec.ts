@@ -9,15 +9,24 @@ test.describe("API Testing", () => {
       "https://jsonplaceholder.typicode.com/posts/1",
     );
 
-    //2.Verify that the response status is true.
+    //2.verify that the response status is true.
     expect(response.ok()).toBeTruthy();
 
-    //3.Verify Status Code is 200 successfully
+    //3.verify Status Code is 200 successfully
     expect(response.status()).toBe(200);
 
-    // 3. อ่านข้อมูลที่ส่งกลับมาเป็น JSON
-    // const body = await response.json();
-    // console.log(body);
+    //4.verify the response data as JSON.
+    const body = await response.json();
+
+    //5.Verify that the response body data is correct
+    console.log(body);
+
+    //6.Verify response body is not empty
+    expect(body).toBeDefined();
+
+    expect(body.userId).toBe(1);
+    expect(body.id).toBe(1);
+    expect(typeof body.title).toBe("string");
   });
 
   test("Should return 404", async ({ request }) => {
@@ -26,7 +35,7 @@ test.describe("API Testing", () => {
       "https://www.saucedemo.com/api/not-found",
     );
 
-    //2.Verify that the response status is true.
+    //2.verify that the response status is true.
     expect(response.ok()).toBeFalsy();
 
     //3.verify status code is 404

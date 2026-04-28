@@ -10,38 +10,41 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
 
+    # Give permission to write files and update the website
     permissions:
       contents: write
       pages: write
       id-token: write
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      # Step 1: Get the code from the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Install Node.js on the server
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: lts/*
 
+      # Step 3: Install all needed libraries for the project
       - name: Install dependencies
         run: npm ci
 
+      # Step 4: Install browsers for Playwright testing
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
+      # Step 5: Run the tests (and keep going if a test fails)
       - name: Run Playwright tests
         run: npx playwright test
         continue-on-error: true
 
+      # Step 6: Create a folder to store test results
       - name: Create Allure results directory
         run: mkdir -p allure-results
 
-      - name: Generate Allure Report
-        uses: simple-elf/allure-report-action@v1.7 
-        if: always()
-        with:
-          allure_results: allure-results
-          allure_history: allure-history
-          keep_reports: 20
-
+      # Step 7: Get old test results to show history on the report
       - name: Get Allure history
         uses: actions/checkout@v4
         if: always()
@@ -50,6 +53,7 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
+      # Step 8: Create the Allure Report using results and history
       - name: Generate Allure Report
         uses: simple-elf/allure-report-action@v1.7
         if: always()
@@ -58,6 +62,7 @@ jobs:
           allure_history: allure-history
           keep_reports: 20
 
+      # Step 9: Put the final report on the website (GitHub Pages)
       - name: Deploy report to Github Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3

@@ -29,7 +29,18 @@ jobs:
 
       - name: Run Playwright tests
         run: npx playwright test
-        continue-on-error: true # รันต่อแม้เทสตก เพื่อให้ Allure แสดงผลได้
+        continue-on-error: true
+
+      - name: Create Allure results directory
+        run: mkdir -p allure-results
+
+      - name: Generate Allure Report
+        uses: simple-elf/allure-report-action@v1.7 
+        if: always()
+        with:
+          allure_results: allure-results
+          allure_history: allure-history
+          keep_reports: 20
 
       - name: Get Allure history
         uses: actions/checkout@v4

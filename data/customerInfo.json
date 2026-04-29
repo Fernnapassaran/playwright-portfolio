@@ -1,0 +1,17 @@
+{
+  "Customer1": {
+    "firstname": "AA",
+    "lastname": "Barlon",
+    "zipcode": "11111"
+  },
+  "Customer2": {
+    "firstname": "BB",
+    "lastname": "Zara",
+    "zipcode": "22222"
+  },
+  "Customer3": {
+    "firstname": "CC",
+    "lastname": "Mark",
+    "zipcode": "33333"
+  }
+}

@@ -1,4 +1,5 @@
 import { expect, type Locator, type Page } from "@playwright/test";
+import testData2 from "../data/customerInfo.json";
 
 export class CheckoutPage {
   //declare a variable
@@ -57,9 +58,9 @@ export class CheckoutPage {
     await this.checkOutButton.click();
 
     //input firstname, lastname, zipcode
-    await this.firstNameInput.fill(firstname);
-    await this.lastNameInput.fill(lastname);
-    await this.zipCodeInput.fill(zipcode);
+    await this.firstNameInput.fill(testData2.Customer1.firstname);
+    await this.lastNameInput.fill(testData2.Customer1.lastname);
+    await this.zipCodeInput.fill(testData2.Customer1.zipcode);
 
     //tap button
     await this.continueButton.scrollIntoViewIfNeeded();

@@ -3,6 +3,7 @@ import { LoginPage } from "../pages/LoginPage";
 import { InventoryPage } from "../pages/InventoryPage";
 import { CheckoutPage } from "../pages/CheckoutPage";
 import testData from "../data/items.json";
+import testData2 from "../data/customerInfo.json";
 
 test("check out success", async ({ page }) => {
   //declare a variable
@@ -12,15 +13,20 @@ test("check out success", async ({ page }) => {
 
   //step 1 : Login
   //go to the web
-  await page.goto('/inventory.html');
+  await page.goto("/inventory.html");
 
   //step 2 : Add to Cart
   await inventoryPage.addOnceItems(testData.singleItem);
 
   //step 3 : fill name lastname zipcode
-  await checkoutPage.checkOutItem("Anna", "Doner", "10900");
+  await checkoutPage.checkOutItem(
+    testData2.Customer1.firstname,
+    testData2.Customer1.lastname,
+    testData2.Customer1.zipcode,
+  );
 
   //step 4 : verify check out success
-  await expect(checkoutPage.checkOutSuccess).toHaveText("Thank you for your order!");
-
+  await expect(checkoutPage.checkOutSuccess).toHaveText(
+    "Thank you for your order!",
+  );
 });

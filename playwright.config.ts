@@ -25,7 +25,6 @@ export default defineConfig({
     /* Take a screenshot every time a test finishes */
     screenshot: "on",
     baseURL: "https://www.saucedemo.com", // ตั้งค่า URL หลักไว้ที่นี่
-    video: "retain-on-failure",
   },
 
   /* Configure projects for major browsers */
@@ -75,7 +74,12 @@ export default defineConfig({
       name: "mobile-safari",
       use: {
         ...devices["iPhone 13"],
+        isMobile: true,
+        hasTouch: true,
         storageState: "playwright/.auth/user.json",
+        launchOptions: {
+          args: ["--start-maximized"],
+        },
       },
       dependencies: ["setup"],
     },
@@ -83,7 +87,12 @@ export default defineConfig({
       name: "mobile-android",
       use: {
         ...devices["Pixel 5"],
+        isMobile: true,
+        hasTouch: true,
         storageState: "playwright/.auth/user.json",
+        launchOptions: {
+          args: ["--start-maximized"],
+        },
       },
       dependencies: ["setup"],
     },

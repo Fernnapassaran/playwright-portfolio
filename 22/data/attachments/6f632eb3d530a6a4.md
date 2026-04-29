@@ -1,0 +1,188 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: login.spec.ts >> Login fail and data loked
+- Location: tests\login.spec.ts:46:5
+
+# Error details
+
+```
+Test timeout of 30000ms exceeded.
+```
+
+```
+Error: locator.waitFor: Test timeout of 30000ms exceeded.
+Call log:
+  - waiting for getByPlaceholder('Username') to be visible
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - button "Open Menu" [ref=e8] [cursor=pointer]
+          - img "Open Menu" [ref=e9]
+        - generic [ref=e11]: Swag Labs
+      - generic [ref=e14]:
+        - generic [ref=e15]: Products
+        - combobox [ref=e18]:
+          - option "Name (A to Z)" [selected]
+          - option "Name (Z to A)"
+          - option "Price (low to high)"
+          - option "Price (high to low)"
+    - generic [ref=e22]:
+      - generic [ref=e23]:
+        - link "Sauce Labs Backpack" [ref=e25] [cursor=pointer]:
+          - /url: "#"
+          - img "Sauce Labs Backpack" [ref=e26]
+        - generic [ref=e27]:
+          - generic [ref=e28]:
+            - link "Sauce Labs Backpack" [ref=e29] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e30]: Sauce Labs Backpack
+            - generic [ref=e31]: carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.
+          - generic [ref=e32]:
+            - generic [ref=e33]: $29.99
+            - button "Add to cart" [ref=e34] [cursor=pointer]
+      - generic [ref=e35]:
+        - link "Sauce Labs Bike Light" [ref=e37] [cursor=pointer]:
+          - /url: "#"
+          - img "Sauce Labs Bike Light" [ref=e38]
+        - generic [ref=e39]:
+          - generic [ref=e40]:
+            - link "Sauce Labs Bike Light" [ref=e41] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e42]: Sauce Labs Bike Light
+            - generic [ref=e43]: A red light isn't the desired state in testing but it sure helps when riding your bike at night. Water-resistant with 3 lighting modes, 1 AAA battery included.
+          - generic [ref=e44]:
+            - generic [ref=e45]: $9.99
+            - button "Add to cart" [ref=e46] [cursor=pointer]
+      - generic [ref=e47]:
+        - link "Sauce Labs Bolt T-Shirt" [ref=e49] [cursor=pointer]:
+          - /url: "#"
+          - img "Sauce Labs Bolt T-Shirt" [ref=e50]
+        - generic [ref=e51]:
+          - generic [ref=e52]:
+            - link "Sauce Labs Bolt T-Shirt" [ref=e53] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e54]: Sauce Labs Bolt T-Shirt
+            - generic [ref=e55]: Get your testing superhero on with the Sauce Labs bolt T-shirt. From American Apparel, 100% ringspun combed cotton, heather gray with red bolt.
+          - generic [ref=e56]:
+            - generic [ref=e57]: $15.99
+            - button "Add to cart" [ref=e58] [cursor=pointer]
+      - generic [ref=e59]:
+        - link "Sauce Labs Fleece Jacket" [ref=e61] [cursor=pointer]:
+          - /url: "#"
+          - img "Sauce Labs Fleece Jacket" [ref=e62]
+        - generic [ref=e63]:
+          - generic [ref=e64]:
+            - link "Sauce Labs Fleece Jacket" [ref=e65] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e66]: Sauce Labs Fleece Jacket
+            - generic [ref=e67]: It's not every day that you come across a midweight quarter-zip fleece jacket capable of handling everything from a relaxing day outdoors to a busy day at the office.
+          - generic [ref=e68]:
+            - generic [ref=e69]: $49.99
+            - button "Add to cart" [ref=e70] [cursor=pointer]
+      - generic [ref=e71]:
+        - link "Sauce Labs Onesie" [ref=e73] [cursor=pointer]:
+          - /url: "#"
+          - img "Sauce Labs Onesie" [ref=e74]
+        - generic [ref=e75]:
+          - generic [ref=e76]:
+            - link "Sauce Labs Onesie" [ref=e77] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e78]: Sauce Labs Onesie
+            - generic [ref=e79]: Rib snap infant onesie for the junior automation engineer in development. Reinforced 3-snap bottom closure, two-needle hemmed sleeved and bottom won't unravel.
+          - generic [ref=e80]:
+            - generic [ref=e81]: $7.99
+            - button "Add to cart" [ref=e82] [cursor=pointer]
+      - generic [ref=e83]:
+        - link "Test.allTheThings() T-Shirt (Red)" [ref=e85] [cursor=pointer]:
+          - /url: "#"
+          - img "Test.allTheThings() T-Shirt (Red)" [ref=e86]
+        - generic [ref=e87]:
+          - generic [ref=e88]:
+            - link "Test.allTheThings() T-Shirt (Red)" [ref=e89] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e90]: Test.allTheThings() T-Shirt (Red)
+            - generic [ref=e91]: This classic Sauce Labs t-shirt is perfect to wear when cozying up to your keyboard to automate a few tests. Super-soft and comfy ringspun combed cotton.
+          - generic [ref=e92]:
+            - generic [ref=e93]: $15.99
+            - button "Add to cart" [ref=e94] [cursor=pointer]
+  - contentinfo [ref=e95]:
+    - list [ref=e96]:
+      - listitem [ref=e97]:
+        - link "Twitter" [ref=e98] [cursor=pointer]:
+          - /url: https://twitter.com/saucelabs
+      - listitem [ref=e99]:
+        - link "Facebook" [ref=e100] [cursor=pointer]:
+          - /url: https://www.facebook.com/saucelabs
+      - listitem [ref=e101]:
+        - link "LinkedIn" [ref=e102] [cursor=pointer]:
+          - /url: https://www.linkedin.com/company/sauce-labs/
+    - generic [ref=e103]: © 2026 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy
+```
+
+# Test source
+
+```ts
+  1  | import { type Locator, type Page } from "@playwright/test";
+  2  | 
+  3  | export class LoginPage {
+  4  |   //declare a variable
+  5  |   readonly page: Page;
+  6  |   readonly usernameInput: Locator;
+  7  |   readonly passwordInput: Locator;
+  8  |   readonly loginButton: Locator;
+  9  |   readonly errorMessage: Locator;
+  10 |   readonly loginSuccess: Locator;
+  11 | 
+  12 |   //Identify the locator
+  13 |   constructor(page: Page) {
+  14 |     this.page = page;
+  15 | 
+  16 |     //find input from text in placeholder
+  17 |     this.usernameInput = page.getByPlaceholder("Username");
+  18 |     this.passwordInput = page.getByPlaceholder("Password");
+  19 | 
+  20 |     //find name in button
+  21 |     this.loginButton = page.getByRole("button", { name: "Login" });
+  22 | 
+  23 |     //find error messages
+  24 |     this.errorMessage = page.locator('[data-test= "error"]');
+  25 | 
+  26 |     this.loginSuccess = page.locator('[data-test="title"]');
+  27 |   }
+  28 | 
+  29 |   //action
+  30 |   //step 1
+  31 |   async goto() {
+  32 |     //go to the web
+  33 |     await this.page.goto("/inventory.html");
+  34 |   }
+  35 | 
+  36 |   //Step2
+  37 |   async login(user: string, pass: string) {
+  38 |     // Wait for the input box to be visible before typing
+> 39 |     await this.usernameInput.waitFor({ state: "visible" });
+     |                              ^ Error: locator.waitFor: Test timeout of 30000ms exceeded.
+  40 |     // Fill username
+  41 |     await this.usernameInput.fill(user);
+  42 |     // Fill password
+  43 |     await this.passwordInput.fill(pass);
+  44 |     //click button
+  45 |     await this.loginButton.click();
+  46 |   }
+  47 | }
+  48 | 
+```

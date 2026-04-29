@@ -12,7 +12,7 @@ test("check out success", async ({ page }) => {
 
   //step 1 : Login
   //go to the web
-  await page.goto("https://www.saucedemo.com/inventory.html");
+  await page.goto('/inventory.html');
 
   //step 2 : Add to Cart
   await inventoryPage.addOnceItems(testData.singleItem);

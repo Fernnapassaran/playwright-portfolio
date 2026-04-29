@@ -10,7 +10,7 @@ test("add item once success", async ({ page }) => {
 
   //step 1 : Login
   //go to the web
-  await page.goto("https://www.saucedemo.com/inventory.html");
+  await page.goto('/inventory.html');
 
   //step 2 : Add to Cart
   await inventoryPage.addOnceItems(testData.singleItem);
@@ -30,7 +30,7 @@ test("add multiple items success", async ({ page }) => {
   const inventoryPage = new InventoryPage(page);
   
   //go to the web
-  await page.goto("https://www.saucedemo.com/inventory.html");
+  await page.goto('/inventory.html');
 
   //find the items
   // for (const item of items) {

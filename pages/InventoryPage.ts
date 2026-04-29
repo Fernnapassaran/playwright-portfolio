@@ -10,9 +10,8 @@ export class InventoryPage {
 
   //Identify the locator
   constructor(page: Page) {
-
     this.page = page;
-    
+
     //find number shoppingCartBadge after add to cart and show remove button
     this.shoppingCartBadge = page.locator('[data-test="shopping-cart-badge"]');
 
@@ -28,10 +27,11 @@ export class InventoryPage {
 
   //Action
   async addOnceItems(itemName: string) {
-
     // Find the product container by the given name
-    const itemContainer = this.page.locator(".inventory_item", { hasText: itemName });
-    
+    const itemContainer = this.page.locator(".inventory_item", {
+      hasText: itemName,
+    });
+
     // Target the "Add to cart" button within the container
     const addButton = itemContainer.locator('button:has-text("Add to cart")');
 
@@ -39,7 +39,6 @@ export class InventoryPage {
     await expect(addButton).toBeVisible();
 
     await addButton.click();
-
   }
 
   async addMultipleItems(itemNames: string[]) {
@@ -54,11 +53,13 @@ export class InventoryPage {
 
   // Remove a product from the inventory page
   async removeMultipleItems(itemName: string) {
-    const itemContainer = this.page.locator(".inventory_item", { hasText: itemName });
+    const itemContainer = this.page.locator(".inventory_item", {
+      hasText: itemName,
+    });
     // Target the button that has changed to "Remove"
     const removeButton = itemContainer.locator('button:has-text("Remove")');
 
     await expect(removeButton).toBeVisible();
     await removeButton.click();
-}
+  }
 }

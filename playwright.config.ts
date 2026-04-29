@@ -25,6 +25,8 @@ export default defineConfig({
     trace: "on-first-retry",
     /* Take a screenshot every time a test finishes */
     screenshot: "on",
+    baseURL: "https://www.saucedemo.com", // ตั้งค่า URL หลักไว้ที่นี่
+    video: "retain-on-failure",
   },
 
   /* Configure projects for major browsers */

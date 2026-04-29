@@ -6,7 +6,7 @@ const authFile = 'playwright/.auth/user.json';
 
 setup('authenticate', async ({ page }) => {
   //go to the web
-  await page.goto('https://www.saucedemo.com/');
+  await page.goto('/inventory.html');
   
   // 2.input login
   await page.locator('[data-test="username"]').fill(testData.validUser.username);

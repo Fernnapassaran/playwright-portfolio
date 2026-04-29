@@ -12,7 +12,6 @@ export class CheckoutPage {
   readonly cartButton: Locator;
   readonly finishButton: Locator;
   readonly checkOutSuccess: Locator;
-  
 
   //Identify the locator
   constructor(page: Page) {
@@ -31,10 +30,10 @@ export class CheckoutPage {
     this.lastNameInput = page.locator('[data-test="lastName"]');
 
     //find locator zipcode
-    this.zipCodeInput = page.locator('[data-test="postalCode"]')
+    this.zipCodeInput = page.locator('[data-test="postalCode"]');
 
     //find locator Continue button
-    this.continueButton = page.locator('[data-test="continue"]')
+    this.continueButton = page.locator('[data-test="continue"]');
 
     //find locator Cancel button
     this.cancelButton = page.locator('[data-test="cancel"]');
@@ -44,8 +43,7 @@ export class CheckoutPage {
 
     //find locator check out success
     this.checkOutSuccess = page.locator('[data-test="complete-header"]');
-  
- }
+  }
 
   //Action
   async checkOutItem(firstname: string, lastname: string, zipcode: string) {
@@ -54,6 +52,7 @@ export class CheckoutPage {
     await this.cartButton.click();
 
     //Tap check out button
+    await this.checkOutButton.scrollIntoViewIfNeeded();
     await this.checkOutButton.isVisible();
     await this.checkOutButton.click();
 
@@ -63,22 +62,23 @@ export class CheckoutPage {
     await this.zipCodeInput.fill(zipcode);
 
     //tap button
+    await this.continueButton.scrollIntoViewIfNeeded();
     await this.continueButton.isVisible();
     await this.continueButton.click();
 
+    await this.finishButton.scrollIntoViewIfNeeded();
     await this.finishButton.isVisible();
     await this.finishButton.click();
-
   }
 
   async completeOrder() {
-    
+    await this.finishButton.scrollIntoViewIfNeeded();
     await this.finishButton.isVisible();
     await this.finishButton.click();
-    // Check text success
-    await expect(this.checkOutSuccess).toBeVisible();
-    await expect(this.checkOutSuccess).toHaveText('Thank you for your order!');
-    
-  }
 
+    // Check text success
+    await this.checkOutSuccess.scrollIntoViewIfNeeded();
+    await expect(this.checkOutSuccess).toBeVisible();
+    await expect(this.checkOutSuccess).toHaveText("Thank you for your order!");
+  }
 }

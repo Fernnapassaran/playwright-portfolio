@@ -10,7 +10,7 @@ test("add item once success", async ({ page }) => {
 
   //step 1 : Login
   //go to the web
-  await page.goto('/inventory.html');
+  await page.goto("/inventory.html");
 
   //step 2 : Add to Cart
   await inventoryPage.addOnceItems(testData.singleItem);
@@ -21,16 +21,15 @@ test("add item once success", async ({ page }) => {
 
   //step 3 : Verify number on the cart
   await expect(inventoryPage.shoppingCartBadge).toHaveText("1");
-  
 });
 
 test("add multiple items success", async ({ page }) => {
   //declare a variable
   const loginPage = new LoginPage(page);
   const inventoryPage = new InventoryPage(page);
-  
+
   //go to the web
-  await page.goto('/inventory.html');
+  await page.goto("/inventory.html");
 
   //find the items
   // for (const item of items) {

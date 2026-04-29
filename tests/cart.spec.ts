@@ -14,7 +14,7 @@ test("remove 1 item from add 1 success", async ({ page }) => {
 
   //step 1 : Login
   //go to the web
-  await page.goto('/inventory.html');
+  await page.goto("/inventory.html");
 
   //step 2 : Add to Cart
   await inventoryPage.addOnceItems(testData.singleItem);
@@ -41,7 +41,7 @@ test("remove 4 item from 4 cart success", async ({ page }) => {
 
   //step 1 : Login
   //go to the web
-  await page.goto('/inventory.html');
+  await page.goto("/inventory.html");
 
   //step 2 : Add to Cart
   await inventoryPage.addMultipleItems(testData.inventoryItems);
@@ -59,5 +59,4 @@ test("remove 4 item from 4 cart success", async ({ page }) => {
 
   //step 5 : Verify that the cart badge is hidden (meaning count is 0)
   await expect(cartPage.cartButton).toHaveText("");
-  
 });

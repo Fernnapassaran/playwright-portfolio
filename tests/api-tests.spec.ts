@@ -1,6 +1,4 @@
 import { test, expect } from "@playwright/test";
-import { count } from "node:console";
-import { request } from "node:http";
 
 test.describe("API Testing", () => {
   test("should fetch product list successfully", async ({ request }) => {

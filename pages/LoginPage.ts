@@ -35,13 +35,17 @@ export class LoginPage {
 
   //Step2
   async login(user: string, pass: string) {
-    // Wait for the input box to be visible before typing
+    //Scroll to the input box so it is visible on mobile screens
+    await this.usernameInput.scrollIntoViewIfNeeded();
+    //Wait for the input box to be visible before typing
     await this.usernameInput.waitFor({ state: "visible" });
-    // Fill username
+    //Fill username
     await this.usernameInput.fill(user);
-    // Fill password
+    //Fill password
     await this.passwordInput.fill(pass);
-    //click button
+    // Scroll to the button
+    await this.loginButton.scrollIntoViewIfNeeded();
+    //click it
     await this.loginButton.click();
   }
 }

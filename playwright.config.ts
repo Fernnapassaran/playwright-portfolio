@@ -1,5 +1,4 @@
 import { defineConfig, devices } from "@playwright/test";
-import { on } from "node:cluster";
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -67,6 +66,23 @@ export default defineConfig({
       name: "webkit",
       use: {
         ...devices["Desktop Safari"],
+        storageState: "playwright/.auth/user.json",
+      },
+      dependencies: ["setup"],
+    },
+
+    {
+      name: "mobile-safari",
+      use: {
+        ...devices["iPhone 13"],
+        storageState: "playwright/.auth/user.json",
+      },
+      dependencies: ["setup"],
+    },
+    {
+      name: "mobile-android",
+      use: {
+        ...devices["Pixel 5"],
         storageState: "playwright/.auth/user.json",
       },
       dependencies: ["setup"],

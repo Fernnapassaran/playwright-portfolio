@@ -17,23 +17,21 @@ export class InventoryPage {
 
     this.inventoryItems = page.locator(".inventory_item");
 
-    this.addtocartButton = page.locator(
-      '[data-test="add-to-cart-sauce-labs-backpack"]',
-    );
-    this.removeButton = page.locator(
-      '[data-test="remove-sauce-labs-backpack"]',
-    );
+    this.addtocartButton = page.locator('button:has-text("Add to cart")');
+
+    this.removeButton = page.locator('button:has-text("Remove")');
   }
 
   //Action
   async addOnceItems(itemName: string) {
     // Find the product container by the given name
-    const itemContainer = this.page.locator(".inventory_item", {
-      hasText: itemName,
-    });
+    const addItem = this.inventoryItems.filter({ hasText: itemName });
+
+    //Scroll down so it is visible on mobile screens
+    await addItem.locator(this.addtocartButton).scrollIntoViewIfNeeded();
 
     // Target the "Add to cart" button within the container
-    const addButton = itemContainer.locator('button:has-text("Add to cart")');
+    const addButton = addItem.locator(this.addtocartButton);
 
     // Wait for the button to be visible and ready to be clicked (helps reduce timeout issues)
     await expect(addButton).toBeVisible();
@@ -44,22 +42,31 @@ export class InventoryPage {
   async addMultipleItems(itemNames: string[]) {
     for (const name of itemNames) {
       // Locate the container and verify that it contains the expected name
-      const item = this.page.locator(".inventory_item", { hasText: name });
+      const addItems = this.inventoryItems.filter({ hasText: name });
+      //Scroll down so it is visible on mobile screens
+      await addItems.locator(this.addtocartButton).scrollIntoViewIfNeeded();
 
-      // Find the "Add to cart" button within the container and click it
-      await item.locator('button:has-text("Add to cart")').click();
+      await expect(addItems).toBeVisible();
+
+      //Find the "Add to cart" button within the container and click it
+      await addItems.locator(this.addtocartButton).click();
     }
   }
 
-  // Remove a product from the inventory page
-  async removeMultipleItems(itemName: string) {
-    const itemContainer = this.page.locator(".inventory_item", {
-      hasText: itemName,
+  //Remove a product from the inventory page
+  async removeMultipleItems(itemNames: string) {
+    const item = this.page.locator(".inventory_item", {
+      hasText: itemNames,
     });
+
     // Target the button that has changed to "Remove"
-    const removeButton = itemContainer.locator('button:has-text("Remove")');
+    const removeButton = item.locator(this.removeButton);
+
+    //Scroll down so it is visible on mobile screens
+    await removeButton.locator(this.removeButton).scrollIntoViewIfNeeded();
 
     await expect(removeButton).toBeVisible();
+
     await removeButton.click();
   }
 }

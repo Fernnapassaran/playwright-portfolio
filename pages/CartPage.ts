@@ -22,38 +22,38 @@ export class CartPage {
     this.backShoppingButton = page.locator('[data-test="continue-shopping"]');
 
     //find locator remove button
-    this.removeButton = page.locator(
-      '[data-test="remove-sauce-labs-backpack"]',
-    );
+    this.removeButton = page.locator('button:has-text("Remove")');
   }
 
   //Action
   async removeItem(itemName: string) {
     const itemInCart = this.page.locator(".cart_item", { hasText: itemName });
 
+    await itemInCart.scrollIntoViewIfNeeded();
     // On the cart page, the remove button is typically labeled "Remove"
-    await itemInCart.locator('button:has-text("Remove")').click();
+    await itemInCart.locator(this.removeButton).click();
   }
 
   async clickCheckout() {
     //click button check out
+    await this.checkOutButton.scrollIntoViewIfNeeded();
     await this.checkOutButton.click();
-    
   }
 
   async clickContinue() {
     //click button Continue Shopping
+    await this.backShoppingButton.scrollIntoViewIfNeeded();
     await this.backShoppingButton.click();
   }
 
   async removeMultipleItems(itemNames: string[]) {
-    
     for (const name of itemNames) {
       // Find the product container with an exact name match
       const itemInCart = this.page.locator(".cart_item", { hasText: name });
 
       // Target the "Remove" button within the container
-      const removeButton = itemInCart.locator('button:has-text("Remove")');
+      const removeButton = itemInCart.locator(this.removeButton);
+      await removeButton.scrollIntoViewIfNeeded();
 
       // Verify and click
       await expect(removeButton).toBeVisible();
@@ -61,4 +61,3 @@ export class CartPage {
     }
   }
 }
-

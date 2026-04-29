@@ -77,9 +77,6 @@ export default defineConfig({
         isMobile: true,
         hasTouch: true,
         storageState: "playwright/.auth/user.json",
-        launchOptions: {
-          args: ["--start-maximized"],
-        },
       },
       dependencies: ["setup"],
     },
@@ -90,9 +87,6 @@ export default defineConfig({
         isMobile: true,
         hasTouch: true,
         storageState: "playwright/.auth/user.json",
-        launchOptions: {
-          args: ["--start-maximized"],
-        },
       },
       dependencies: ["setup"],
     },

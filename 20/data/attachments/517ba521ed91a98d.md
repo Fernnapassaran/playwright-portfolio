@@ -1,0 +1,103 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: inventory.spec.ts >> add item once success
+- Location: tests\inventory.spec.ts:6:5
+
+# Error details
+
+```
+Error: expect(page).toHaveURL(expected) failed
+
+Expected pattern: /.*inventory.html/
+Received string:  "https://www.saucedemo.com/"
+Timeout: 5000ms
+
+Call log:
+  - Expect "toHaveURL" with timeout 5000ms
+    9 × unexpected value "https://www.saucedemo.com/"
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e4]: Swag Labs
+  - generic [ref=e5]:
+    - generic [ref=e9]:
+      - textbox "Username" [ref=e11]
+      - textbox "Password" [ref=e13]
+      - button "Login" [ref=e15] [cursor=pointer]
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - heading "Accepted usernames are:" [level=4] [ref=e19]
+        - text: standard_user
+        - text: locked_out_user
+        - text: problem_user
+        - text: performance_glitch_user
+        - text: error_user
+        - text: visual_user
+      - generic [ref=e20]:
+        - heading "Password for all users:" [level=4] [ref=e21]
+        - text: secret_sauce
+```
+
+# Test source
+
+```ts
+  1  | import { test, expect } from "@playwright/test";
+  2  | import { LoginPage } from "../pages/LoginPage";
+  3  | import { InventoryPage } from "../pages/InventoryPage";
+  4  | import testData from "../data/items.json";
+  5  | 
+  6  | test("add item once success", async ({ page }) => {
+  7  |   //declare a variable
+  8  |   //const loginPage = new LoginPage(page);
+  9  |   const inventoryPage = new InventoryPage(page);
+  10 | 
+  11 |   //step 1 : Login
+  12 |   //go to the web
+  13 |   await page.goto("/");
+  14 | 
+  15 |   // 💡 Add this: Wait until we are on the inventory page (for Mobile stability)
+> 16 |   await expect(page).toHaveURL(/.*inventory.html/);
+     |                      ^ Error: expect(page).toHaveURL(expected) failed
+  17 | 
+  18 |   //step 2 : Add to Cart
+  19 |   await inventoryPage.addOnceItems(testData.singleItem);
+  20 | 
+  21 |   //verify button remove after add to cart
+  22 |   await expect(inventoryPage.removeButton).toBeVisible();
+  23 |   await expect(inventoryPage.removeButton).toHaveText("Remove");
+  24 | 
+  25 |   //step 3 : Verify number on the cart
+  26 |   await expect(inventoryPage.shoppingCartBadge).toHaveText("1");
+  27 | });
+  28 | 
+  29 | test("add multiple items success", async ({ page }) => {
+  30 |   //declare a variable
+  31 |   const loginPage = new LoginPage(page);
+  32 |   const inventoryPage = new InventoryPage(page);
+  33 | 
+  34 |   //go to the web
+  35 |   await page.goto("/inventory.html");
+  36 | 
+  37 |   //find the items
+  38 |   // for (const item of items) {
+  39 |   //   await page.locator(`[data-test="${item}"]`).click();
+  40 |   // }
+  41 |   await inventoryPage.addMultipleItems(testData.inventoryItems);
+  42 | 
+  43 |   // step 3 : Verify count number on the cart
+  44 |   await expect(inventoryPage.shoppingCartBadge).toHaveText(
+  45 |     testData.inventoryItems.length.toString(),
+  46 |   );
+  47 | });
+  48 | 
+```

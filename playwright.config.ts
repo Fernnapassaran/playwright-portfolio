@@ -39,10 +39,6 @@ export default defineConfig({
         ...devices["Desktop Chrome"],
         /* Configure all tests in this project to use the stored login state */
         storageState: "playwright/.auth/user.json",
-        /* Launch browser in maximized mode */
-        launchOptions: {
-          args: ["--start-maximized"],
-        },
         /* Set viewport to null to allow full screen resizing */
         viewport: null,
         /* Reset deviceScaleFactor to prevent conflict with null viewport */
